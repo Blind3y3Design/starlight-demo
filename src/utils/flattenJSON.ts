@@ -4,10 +4,14 @@
 // optionally pass a callback which will run on each final value
 // callback has access to the final concatenated key
 
-export default function flattenedJSON(rootObj, callback, keyPrefix) {
-  function flatten(acc, object, prev) {
+export default function flattenedJSON(
+  rootObj: Object,
+  callback: Function,
+  keyPrefix: string
+) {
+  function flatten(acc: Object, object: Object, prev?: string) {
     Object.keys(object).forEach((key) => {
-      const value = object[key];
+      const value = (object as any)[key];
       const newKey = prev ? `${prev}-${key}` : key;
 
       if (typeof value === "object" && Object.keys(value).length) {
@@ -27,7 +31,7 @@ export default function flattenedJSON(rootObj, callback, keyPrefix) {
         details = result;
       }
 
-      acc[newKey] = {
+      (acc as any)[newKey] = {
         ...objToStore,
         ...details,
       };
@@ -38,14 +42,14 @@ export default function flattenedJSON(rootObj, callback, keyPrefix) {
     return acc;
   }
 
-  return Object.keys(rootObj).reduce((acc, category) => {
+  return Object.keys(rootObj).reduce((acc: Object, category: string) => {
     // Take each category and flatten its tokens separately
     const keyBeginning = `${keyPrefix || "$nebula"}-${category}`;
 
-    acc[category] = flatten(
+    (acc as any)[category] = flatten(
       {},
       {
-        [keyBeginning]: rootObj[category],
+        [keyBeginning]: (rootObj as any)[category],
       }
     );
     return acc;
