@@ -1,0 +1,127 @@
+---
+import { Icon } from "@astrojs/starlight/components";
+import { contrastRatio, accessibilityLevel } from "@/utils/contrast";
+
+interface Props {
+  colorHex: string;
+  colorName: string;
+  indicator?: string;
+}
+
+const { colorHex, colorName, indicator } = Astro.props;
+
+const contrastScoreLight = contrastRatio(colorHex, "#ffffff");
+const contrastScoreDark = contrastRatio(colorHex, "#575757");
+
+const accessibilityScoreLight = accessibilityLevel(colorHex, "#ffffff");
+const accessibilityScoreDark = accessibilityLevel(colorHex, "#575757");
+
+const contrastScore =
+  contrastScoreLight < contrastScoreDark
+    ? accessibilityScoreLight
+    : accessibilityScoreDark;
+
+let contrastColor = contrastScoreLight < contrastScoreDark ? "light" : "dark";
+
+if (accessibilityScoreDark === "DNP" && accessibilityScoreLight === "DNP") {
+  contrastColor = "error";
+}
+---
+
+<div class="color-card not-content">
+  {
+    indicator && (
+      <div class="color-card__indicator">
+        <Icon name="information" />
+        {indicator}
+      </div>
+    )
+  }
+  <div
+    class="color-card__swatch"
+    style={"background: var(--nebula-color-" +
+      colorName.replace(/\s/g, "-").toLowerCase() +
+      ")"}
+  >
+  </div>
+  <div class="color-card__label">
+    <div class="color-card__info">
+      <p class="color-card__name">{colorName}</p>
+      <p class="color-card__hex">{colorHex}</p>
+    </div>
+    <div class="color-card__pill">
+      <div
+        class={`color-card__accessibility-pill color-card__accessibility-pill--${contrastColor}`}
+      >
+        <span>
+          {contrastScore}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .color-card {
+    border-radius: 8px;
+    box-shadow: var(--nebula-shadow-100);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .color-card__swatch {
+    aspect-ratio: 4/3;
+  }
+
+  .color-card__label {
+    background: var(--nebula-color-platform-white);
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1fr auto;
+    padding: var(--nebula-space-1x);
+  }
+
+  .color-card__name,
+  .color-card__hex {
+    color: var(--nebula-color-platform-neutral-800);
+  }
+
+  .color-card__name {
+    font-weight: 600;
+  }
+
+  .color-card__hex {
+    text-transform: uppercase;
+  }
+
+  .color-card__accessibility-pill {
+    border: 1px solid;
+    border-radius: 4px;
+    font-weight: 600;
+    line-height: 1.2;
+    padding: 2px 8px;
+
+    span {
+      line-height: 1.2;
+    }
+  }
+
+  .color-card__accessibility-pill--light {
+    background: var(--nebula-color-platform-white);
+    border-color: var(--nebula-color-platform-neutral-800);
+    color: var(--nebula-color-platform-neutral-800);
+  }
+
+  .color-card__accessibility-pill--dark {
+    background: var(--nebula-color-platform-neutral-800);
+    border-color: var(--nebula-color-platform-neutral-800);
+    color: var(--nebula-color-platform-white);
+  }
+
+  .color-card__accessibility-pill--error {
+    background: #ff9d9d;
+    border-color: #ff9d9d;
+    color: var(--nebula-color-platform-neutral-800);
+  }
+</style>

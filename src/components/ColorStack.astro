@@ -1,0 +1,80 @@
+---
+interface Props {
+  colorFamily: string;
+  tokenSet: Object;
+}
+
+const { colorFamily, tokenSet } = Astro.props;
+
+let tokenMap = [];
+
+if (colorFamily.includes("Platform")) {
+  for (const property in tokenSet as Object) {
+    tokenMap.push(
+      "--nebula-color-" +
+        colorFamily.replace(/\s/g, "-").toLowerCase() +
+        "-" +
+        property
+    );
+  }
+}
+
+if ("primary" in tokenSet) {
+  for (const property in tokenSet.primary as Object) {
+    tokenMap.push(
+      "--nebula-color-" +
+        colorFamily.replace(/\s/g, "-").toLowerCase() +
+        "-primary-" +
+        property
+    );
+  }
+}
+
+if ("secondary" in tokenSet) {
+  for (const property in tokenSet.secondary as Object) {
+    tokenMap.push(
+      "--nebula-color-" +
+        colorFamily.replace(/\s/g, "-").toLowerCase() +
+        "-secondary-" +
+        property
+    );
+  }
+}
+---
+
+<div class="color-stack not-content">
+  {
+    tokenMap.map((token) => (
+      <div class="color-stack__item" style={"background: var(" + token + ")"} />
+    ))
+  }
+  <div class="nebula-badge__container color-stack__badge">
+    <div
+      class="nebula-badge nebula-badge--overlay nebula-badge--m nebula-badge--fill"
+    >
+      {colorFamily}
+    </div>
+  </div>
+</div>
+
+<style>
+  .color-stack {
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(1rem, 1fr));
+    position: relative;
+    overflow: hidden;
+  }
+
+  .color-stack__item {
+    height: 136px;
+    margin: 0;
+  }
+
+  .color-stack__badge {
+    left: 1rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+</style>

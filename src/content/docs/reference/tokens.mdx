@@ -1,0 +1,66 @@
+---
+title: Tokens
+---
+
+import "@/utils/flattenJSON";
+import { tokens as nebulaTokens } from "@discoveryedu/nebula-core/dist/data/nebula_tokens.json";
+import TokensTable from "@components/TokensTable.astro";
+import flattenedJSON from "@/utils/flattenJSON";
+
+This page lists all the Nebula tokens, split into categories.
+
+## Blur
+
+<TokensTable tokenSet={flattenedJSON(nebulaTokens).blur} />
+
+## Border
+
+<TokensTable tokenSet={flattenedJSON(nebulaTokens).border} />
+
+## Breakpoints
+
+<TokensTable tokenSet={flattenedJSON(nebulaTokens).breakpoints} />
+
+## Color
+
+<TokensTable tokenSet={flattenedJSON(nebulaTokens).color} />
+
+## Dim (Dimension)
+
+<TokensTable tokenSet={flattenedJSON(nebulaTokens).dim} />
+
+## Gradient
+
+<TokensTable tokenSet={flattenedJSON(nebulaTokens).gradient} />
+
+## Font
+
+<TokensTable tokenSet={flattenedJSON(nebulaTokens).font} />
+
+## Icon
+
+<TokensTable tokenSet={flattenedJSON(nebulaTokens).icon} />
+
+## Overlay
+
+<TokensTable tokenSet={flattenedJSON(nebulaTokens).overlay} />
+
+## Shadow
+
+<TokensTable tokenSet={flattenedJSON(nebulaTokens).shadow} />
+
+## Space
+
+<TokensTable tokenSet={flattenedJSON(nebulaTokens).space} />
+
+## Text Color
+
+<TokensTable tokenSet={flattenedJSON(nebulaTokens)["text-color"]} />
+
+## Text Decoration
+
+<TokensTable tokenSet={flattenedJSON(nebulaTokens)["text-decoration"]} />
+
+## Transition
+
+<TokensTable tokenSet={flattenedJSON(nebulaTokens).transition} />

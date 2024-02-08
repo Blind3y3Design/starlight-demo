@@ -1,0 +1,397 @@
+---
+title: Color
+description: These colors are the foundation for all visual communication, and it should be carefully selected and considered to ensure consistency across all touch points. These color palettes are important considering factors such as color theory, accessibility, and the impact of color on user experience. Enhancing the overall user experience and ensure a cohesive and memorable brand identity.
+---
+
+import CardGrid from "@components/CardGrid.astro";
+import ColorCard from "@components/ColorCard.astro";
+import ColorStack from "@components/ColorStack.astro";
+import { tokens as nebulaTokens } from "@discoveryedu/nebula-core/dist/data/nebula_tokens.json";
+
+## Anatomy
+
+Color anatomy is to ensure consistency and harmony across design elements
+
+### Platform Colors
+
+Platform colors make up majority of the user interfaces within the Discovery Education platform. Neutral makes up our Typography colorization and several other areas of our platform. Interface should be considered for most user interface colorization, while Interactive should be considered and utilized for all elements that can be interacted with, such as links and buttons.
+
+<ColorStack
+  colorFamily="Platform Neutral"
+  tokenSet={nebulaTokens.color.platform.neutral}
+/>
+<ColorStack
+  colorFamily="Platform Interface"
+  tokenSet={nebulaTokens.color.platform.interface}
+/>
+<ColorStack
+  colorFamily="Platform Interactive"
+  tokenSet={nebulaTokens.color.platform.interactive}
+/>
+
+### Curriculum Colors
+
+Curriculum colors are selected colors to represent each individual curriculum that we support. These colors should be utilized when in the specific areas of our platform.
+
+<ColorStack colorFamily="Science" tokenSet={nebulaTokens.color.science} />
+
+<ColorStack colorFamily="Math" tokenSet={nebulaTokens.color.math} />
+
+<ColorStack
+  colorFamily="Social Studies"
+  tokenSet={nebulaTokens.color["social-studies"]}
+/>
+
+<ColorStack colorFamily="Teach" tokenSet={nebulaTokens.color.teach} />
+
+<ColorStack colorFamily="Coding" tokenSet={nebulaTokens.color.coding} />
+
+<ColorStack colorFamily="Stem" tokenSet={nebulaTokens.color.stem} />
+
+<ColorStack colorFamily="Health" tokenSet={nebulaTokens.color.health} />
+
+### Shade Layering
+
+When utilizing colors in user interfaces you should tend to stack coloring in layers from dark to light or light to dark. This creates depth when layering colors on top of each other and allows for other specific needs such as page depth and interactions.
+
+![Shade Layering Visual](@assets/shade-layering.png)
+
+### Contrast and Accessibility
+
+Nebula aims to meet WCAG stands for color contrast for all essential content and design elements.
+
+| Score | Contrast Ratio | Result                            |
+| ----- | -------------- | --------------------------------- |
+| AAA   | 7.0+:1         | Passes WCAG 2.1 AAA               |
+| AA    | 4.5:1          | Passes WCAG 2.1 AA                |
+| AA18  | 3.0:1          | Passes WCAG 2.1 AA for Large Text |
+| DNP   | < 3.0:1        | Does Not Pass                     |
+
+#### Example
+
+![Color Accessibility Visual](@assets/color-accessibility.png)
+
+## Color Details
+
+### Platform Neutrals
+
+<CardGrid>
+
+    {
+        Object.entries(nebulaTokens.color.platform.neutral).map((token, i) => {
+        return(
+                <ColorCard
+                    key={i}
+                    colorHex={token[1]}
+                    colorName={`Platform Neutral ${token[0]}`}
+                />
+            )
+
+        })
+    }
+
+</CardGrid>
+
+### Platform Interface
+
+<CardGrid>
+
+    {
+        Object.entries(nebulaTokens.color.platform.interface).map((token, i) => {
+        return(
+                <ColorCard
+                    key={i}
+                    colorHex={token[1]}
+                    colorName={`Platform Interface ${token[0]}`}
+                />
+            )
+
+        })
+    }
+
+</CardGrid>
+
+### Platform Interactive
+
+<CardGrid>
+
+    {
+        Object.entries(nebulaTokens.color.platform.interactive).map((token, i) => {
+        return(
+                <ColorCard
+                    key={i}
+                    colorHex={token[1]}
+                    colorName={`Platform Interactive ${token[0]}`}
+                />
+            )
+
+        })
+    }
+
+</CardGrid>
+
+### Science Primary
+
+<CardGrid>
+
+    {
+        Object.entries(nebulaTokens.color.science.primary).map((token, i) => {
+        return(
+                <ColorCard
+                    key={i}
+                    colorHex={token[1]}
+                    colorName={`Science Primary ${token[0]}`}
+                />
+            )
+
+        })
+    }
+
+</CardGrid>
+
+### Science Secondary
+
+<CardGrid>
+
+    {
+        Object.entries(nebulaTokens.color.science.secondary).map((token, i) => {
+        return(
+                <ColorCard
+                    key={i}
+                    colorHex={token[1]}
+                    colorName={`Science Secondary ${token[0]}`}
+                />
+            )
+
+        })
+    }
+
+</CardGrid>
+
+### Math Primary
+
+<CardGrid>
+
+    {
+        Object.entries(nebulaTokens.color.math.primary).map((token, i) => {
+        return(
+                <ColorCard
+                    key={i}
+                    colorHex={token[1]}
+                    colorName={`Math Primary ${token[0]}`}
+                />
+            )
+
+        })
+    }
+
+</CardGrid>
+
+### Math Secondary
+
+<CardGrid>
+
+    {
+        Object.entries(nebulaTokens.color.math.secondary).map((token, i) => {
+        return(
+                <ColorCard
+                    key={i}
+                    colorHex={token[1]}
+                    colorName={`Math Secondary ${token[0]}`}
+                />
+            )
+
+        })
+    }
+
+</CardGrid>
+
+### Social Studies Primary
+
+<CardGrid>
+
+    {
+        Object.entries(nebulaTokens.color['social-studies'].primary).map((token, i) => {
+        return(
+                <ColorCard
+                    key={i}
+                    colorHex={token[1]}
+                    colorName={`Social Studies Primary ${token[0]}`}
+                />
+            )
+
+        })
+    }
+
+</CardGrid>
+
+### Social Studies Secondary
+
+<CardGrid>
+
+    {
+        Object.entries(nebulaTokens.color['social-studies'].secondary).map((token, i) => {
+        return(
+                <ColorCard
+                    key={i}
+                    colorHex={token[1]}
+                    colorName={`Social Studies Secondary ${token[0]}`}
+                />
+            )
+
+        })
+    }
+
+</CardGrid>
+
+### Teach Primary
+
+<CardGrid>
+
+    {
+        Object.entries(nebulaTokens.color.teach.primary).map((token, i) => {
+        return(
+                <ColorCard
+                    key={i}
+                    colorHex={token[1]}
+                    colorName={`Teach Primary ${token[0]}`}
+                />
+            )
+
+        })
+    }
+
+</CardGrid>
+
+### Teach Secondary
+
+<CardGrid>
+
+    {
+        Object.entries(nebulaTokens.color.teach.secondary).map((token, i) => {
+        return(
+                <ColorCard
+                    key={i}
+                    colorHex={token[1]}
+                    colorName={`Teach Secondary ${token[0]}`}
+                />
+            )
+
+        })
+    }
+
+</CardGrid>
+
+### Coding Primary
+
+<CardGrid>
+
+    {
+        Object.entries(nebulaTokens.color.coding.primary).map((token, i) => {
+        return(
+                <ColorCard
+                    key={i}
+                    colorHex={token[1]}
+                    colorName={`Coding Primary ${token[0]}`}
+                />
+            )
+
+        })
+    }
+
+</CardGrid>
+
+### Coding Secondary
+
+<CardGrid>
+
+    {
+        Object.entries(nebulaTokens.color.coding.secondary).map((token, i) => {
+        return(
+                <ColorCard
+                    key={i}
+                    colorHex={token[1]}
+                    colorName={`Coding Secondary ${token[0]}`}
+                />
+            )
+
+        })
+    }
+
+</CardGrid>
+
+### Stem Primary
+
+<CardGrid>
+
+    {
+        Object.entries(nebulaTokens.color.stem.primary).map((token, i) => {
+        return(
+                <ColorCard
+                    key={i}
+                    colorHex={token[1]}
+                    colorName={`Stem Primary ${token[0]}`}
+                />
+            )
+
+        })
+    }
+
+</CardGrid>
+
+### Stem Secondary
+
+<CardGrid>
+
+    {
+        Object.entries(nebulaTokens.color.stem.secondary).map((token, i) => {
+        return(
+                <ColorCard
+                    key={i}
+                    colorHex={token[1]}
+                    colorName={`Stem Secondary ${token[0]}`}
+                />
+            )
+
+        })
+    }
+
+</CardGrid>
+
+### Health Primary
+
+<CardGrid>
+
+    {
+        Object.entries(nebulaTokens.color.health.primary).map((token, i) => {
+        return(
+                <ColorCard
+                    key={i}
+                    colorHex={token[1]}
+                    colorName={`Health Primary ${token[0]}`}
+                />
+            )
+
+        })
+    }
+
+</CardGrid>
+
+### Health Secondary
+
+<CardGrid>
+
+    {
+        Object.entries(nebulaTokens.color.health.secondary).map((token, i) => {
+        return(
+                <ColorCard
+                    key={i}
+                    colorHex={token[1]}
+                    colorName={`Health Secondary ${token[0]}`}
+                />
+            )
+
+        })
+    }
+
+</CardGrid>

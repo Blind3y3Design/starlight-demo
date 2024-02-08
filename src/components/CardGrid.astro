@@ -1,0 +1,25 @@
+---
+interface Props {
+  gridColumns: 3 | 4;
+}
+
+const { gridColumns = 3 } = Astro.props;
+---
+
+<div class={`card-grid not-content card-grid--${gridColumns}`}>
+  <slot />
+</div>
+
+<style>
+  .card-grid {
+    display: grid;
+    gap: var(--nebula-space-1x);
+  }
+
+  .card-grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .card-grid--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+</style>
