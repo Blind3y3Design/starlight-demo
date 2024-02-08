@@ -29,7 +29,9 @@ Static assets, like favicons, can be placed in the `public/` directory.
 ## Path Aliases
 
 `@/*` points to `src/*`
+
 `@components/*` points to `src/components/*`
+
 `@assets/*` points to `src/assets/*`
 
 ## 🧞 Commands
